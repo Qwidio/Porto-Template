@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body { font-family: 'Inter', sans-serif; }
+
+/* Infinite Marquee Animation for Mobile */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-mobile {
+    animation: marquee 25s linear infinite;
+}
+
+/* Disable marquee on desktop */
+@media (min-width: 768px) {
+    .animate-marquee-mobile {
+        animation: none;
+        transform: none !important;
+    }
+}
