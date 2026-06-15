@@ -1,3 +1,29 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAd-hO7b3O7earWSAilzzZuLaivnFYrC_w",
+    authDomain: "porto-54f19.firebaseapp.com",
+    projectId: "porto-54f19",
+    storageBucket: "porto-54f19.firebasestorage.app",
+    messagingSenderId: "25219068431",
+    appId: "1:25219068431:web:5cce59235013b8571f297a"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadPublicBlogPosts() {
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+    
+    querySnapshot.forEach((doc) => {
+        const post = doc.data();
+        console.log("Post Title:", post.title);
+        // Map these properties to your public HTML template elements!
+    });
+}
+loadPublicBlogPosts();
+
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const html = document.documentElement;
